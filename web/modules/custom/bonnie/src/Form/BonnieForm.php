@@ -4,6 +4,8 @@ namespace Drupal\bonnie\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
 
 /**
  * Class BonnieForm.
@@ -31,8 +33,12 @@ class BonnieForm extends FormBase {
     ];
     $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Add cat'),
+      '#value' => ('Add cat'),
       '#button_type' => 'primary',
+      '#ajax' => [
+        'callback' => '::submitForm',
+      ],
+      '#suffix' => '<span class="valid-message"></span>',
     ];
     return $form;
   }
@@ -41,18 +47,28 @@ class BonnieForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    if (strlen($form_state->getValue('name')) < 2) {
-      $form_state->setErrorByName('name', $this->t('Name is too short.'));
-    }
-    if (strlen($form_state->getValue('name')) > 32) {
-      $form_state->setErrorByName('name', $this->t('Name is too long.'));
-    }
   }
 
   /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    if (!$form_state->getValue('name')
+      || empty($form_state->getValue('name'))
+    ) {
+      $response->addCommand(new HtmlCommand('.valid-message', $this->t('Enter cat name.')));
+    }
+    elseif (strlen($form_state->getValue('name')) < 2) {
+      $response->addCommand(new HtmlCommand('.valid-message', $this->t('Name is too short.')));
+    }
+    elseif (strlen($form_state->getValue('name')) > 32) {
+      $response->addCommand(new HtmlCommand('.valid-message', $this->t('Name is too long.')));
+    }
+    else {
+      $response->addCommand(new HtmlCommand('.valid-message', $this->t('Name added.')));
+    }
+    return $response;
   }
 
 }
