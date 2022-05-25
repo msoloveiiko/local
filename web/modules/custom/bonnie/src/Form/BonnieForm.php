@@ -31,7 +31,7 @@ class BonnieForm extends FormBase {
     ];
     $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Add cat'),
+      '#value' => ('Add cat'),
       '#button_type' => 'primary',
     ];
     return $form;
@@ -41,12 +41,17 @@ class BonnieForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
+
     if (strlen($form_state->getValue('name')) < 2) {
       $form_state->setErrorByName('name', $this->t('Name is too short.'));
     }
-    if (strlen($form_state->getValue('name')) > 32) {
+    elseif (strlen($form_state->getValue('name')) > 32) {
       $form_state->setErrorByName('name', $this->t('Name is too long.'));
     }
+    else {
+      \Drupal::messenger()->addStatus('Name added');
+    }
+
   }
 
   /**
