@@ -1,0 +1,18 @@
+footer {
+  background-color: #01222d;
+  padding: 50px 0 50px;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: -150px;
+  .block-system-powered-by-block span {
+    color: aliceblue;
+    font-size: 20px;
+    margin: 0 0 0 50px;
+    a {
+      font-size: 20px;
+      color: #1040ff;
+      text-decoration: none;
+    }
+  }
+}

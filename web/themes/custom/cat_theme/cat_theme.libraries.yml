@@ -1,0 +1,11 @@
+global:
+  css:
+    theme:
+      css/elements.css: { }
+      css/fonts.css: { }
+    component:
+      css/header.css: { }
+      css/main-menu.css: { }
+      css/form.css: { }
+      css/footer.css: { }
+
