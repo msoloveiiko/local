@@ -49,6 +49,17 @@ class BonnieForm extends FormBase {
       ],
       '#suffix' => '<span class="email-valid-message"></span>',
     ];
+    $form['image'] = [
+      '#type' => 'managed_file',
+      '#title' => $this->t('Cat image:'),
+      '#upload_validators' => [
+        'file_validate_extensions' => ['png jpg jpeg'],
+        'file_validate_size' => [2 * 1024 * 1024],
+      ],
+      '#preview_image_style' => 'medium',
+      '#upload_location' => 'public://',
+      '#required' => TRUE,
+    ];
     $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => ('Add cat'),
@@ -66,6 +77,7 @@ class BonnieForm extends FormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
   }
+
   /**
    * Ajax callback to validate the email field.
    */
@@ -81,9 +93,9 @@ class BonnieForm extends FormBase {
     }
     elseif (preg_match('/^[a-z_-]+@[a-z0-9.-]+\.[a-z]{2,4}$/', $form_state->getValue('email'))) {
       $css = ['border' => '3px solid green'];
-      $emailErr = $this->t('Email ok.');
+      $message = $this->t('Email ok.');
       $response->addCommand(new CssCommand('#edit-email', $css));
-      $response->addCommand(new HtmlCommand('.email-valid-message', $emailErr));
+      $response->addCommand(new HtmlCommand('.email-valid-message', $message));
     }
     else {
       $css = ['border' => '3px solid red'];
@@ -93,6 +105,7 @@ class BonnieForm extends FormBase {
     }
     return $response;
   }
+
   /**
    * {@inheritdoc}
    */
