@@ -30,6 +30,14 @@ class BonnieForm extends FormBase {
       '#type' => 'textfield',
       '#placeholder' => $this->t('From 2 to 32 letters'),
       '#required' => TRUE,
+      '#suffix' => '<span class="name-valid-message"></span>',
+    ];
+
+    $form['email'] = [
+      '#type' => 'email',
+      '#title' => $this->t('Your email:'),
+      '#placeholder' => ('user-_@company.'),
+      '#required' => TRUE,
     ];
     $form['actions']['submit'] = [
       '#type' => 'submit',
@@ -57,13 +65,13 @@ class BonnieForm extends FormBase {
     if (!$form_state->getValue('name')
       || empty($form_state->getValue('name'))
     ) {
-      $response->addCommand(new HtmlCommand('.valid-message', $this->t('Enter cat name.')));
+      $response->addCommand(new HtmlCommand('.name-valid-message', $this->t('Enter cat name.')));
     }
     elseif (strlen($form_state->getValue('name')) < 2) {
-      $response->addCommand(new HtmlCommand('.valid-message', $this->t('Name is too short.')));
+      $response->addCommand(new HtmlCommand('.name-valid-message', $this->t('Name is too short.')));
     }
     elseif (strlen($form_state->getValue('name')) > 32) {
-      $response->addCommand(new HtmlCommand('.valid-message', $this->t('Name is too long.')));
+      $response->addCommand(new HtmlCommand('.name-valid-message', $this->t('Name is too long.')));
     }
     else {
       $response->addCommand(new HtmlCommand('.valid-message', $this->t('Name added.')));
