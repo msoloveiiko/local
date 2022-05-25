@@ -1,1 +1,13 @@
-
+<?php
+/**
+ * Implements hook_theme().
+ */
+function bonnie_theme() {
+  return [
+    'bonnie' => [
+      'variables' => [
+        'bonnieTitle' => NULL,
+      ],
+    ],
+  ];
+}
