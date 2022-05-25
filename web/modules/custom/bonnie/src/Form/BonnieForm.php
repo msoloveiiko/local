@@ -6,6 +6,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\CssCommand;
 
 /**
  * Class BonnieForm.
@@ -38,6 +39,15 @@ class BonnieForm extends FormBase {
       '#title' => $this->t('Your email:'),
       '#placeholder' => ('user-_@company.'),
       '#required' => TRUE,
+      '#ajax' => [
+        'callback' => [$this, 'validateEmailAjax'],
+        'event' => 'input',
+        'progress' => [
+          'type' => 'throbber',
+          'message' => NULL,
+        ],
+      ],
+      '#suffix' => '<span class="email-valid-message"></span>',
     ];
     $form['actions']['submit'] = [
       '#type' => 'submit',
@@ -56,7 +66,33 @@ class BonnieForm extends FormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
   }
-
+  /**
+   * Ajax callback to validate the email field.
+   */
+  public function validateEmailAjax(array &$form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    if (!$form_state->getValue('email')
+      || empty($form_state->getValue('email'))
+    ) {
+      $css = ['border' => '3px solid red'];
+      $emailErr = $this->t('Enter email.');
+      $response->addCommand(new CssCommand('#edit-email', $css));
+      $response->addCommand(new HtmlCommand('.email-valid-message', $emailErr));
+    }
+    elseif (preg_match('/^[a-z_-]+@[a-z0-9.-]+\.[a-z]{2,4}$/', $form_state->getValue('email'))) {
+      $css = ['border' => '3px solid green'];
+      $emailErr = $this->t('Email ok.');
+      $response->addCommand(new CssCommand('#edit-email', $css));
+      $response->addCommand(new HtmlCommand('.email-valid-message', $emailErr));
+    }
+    else {
+      $css = ['border' => '3px solid red'];
+      $emailErr = $this->t('Email not valid.');
+      $response->addCommand(new CssCommand('#edit-email', $css));
+      $response->addCommand(new HtmlCommand('.email-valid-message', $emailErr));
+    }
+    return $response;
+  }
   /**
    * {@inheritdoc}
    */
