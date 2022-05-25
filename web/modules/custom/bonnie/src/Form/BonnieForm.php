@@ -41,6 +41,12 @@ class BonnieForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
+    if (strlen($form_state->getValue('name')) < 2) {
+      $form_state->setErrorByName('name', $this->t('Name is too short.'));
+    }
+    if (strlen($form_state->getValue('name')) > 32) {
+      $form_state->setErrorByName('name', $this->t('Name is too long.'));
+    }
   }
 
   /**
