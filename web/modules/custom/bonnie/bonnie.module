@@ -2,12 +2,10 @@
 /**
  * Implements hook_theme().
  */
-function bonnie_theme() {
-  return [
-    'bonnie' => [
-      'variables' => [
-        'bonnieTitle' => NULL,
-      ],
-    ],
+function cat_theme($existing, $type, $theme, $path) {
+  $theme['bonnie_form'] = [
+    'template' => 'bonnie-template',
+    'render element' => 'form',
   ];
+  return $theme;
 }

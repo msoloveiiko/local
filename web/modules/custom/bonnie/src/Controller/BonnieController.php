@@ -1,27 +1,23 @@
 <?php
 
-namespace Drupal\bonnie\Controller;
+namespace Drupal\Bonnie\Controller;
+
+use Drupal\Core\Controller\ControllerBase;
 
 /**
- * Provides route responses for the bonnie module.
+ * Controller for BonnieForm.
  */
-class BonnieController {
+class BonnieController extends ControllerBase {
 
   /**
-   * Returns a page.
-   *
-   * @return array
-   *   A renderable array.
+   * Returns the add bonnie form.
    */
   public function content() {
+    $form = $this->formBuilder()->getForm('Drupal\bonnie\Form\BonnieForm');
     return [
-      '#type' => 'html_tag',
-      '#tag' => 'h1',
-      '#value' => 'Hello! You can add here a photo of your cat.',
-      '#attributes' => [
-        'class' => ['bonnie-title'],
-      ],
-
+      '#theme' => 'cats_templates',
+      '#title' => 'Hello! You can add here a photo of your cat.',
+      $form,
     ];
   }
 
