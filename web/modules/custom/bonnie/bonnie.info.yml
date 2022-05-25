@@ -1,0 +1,6 @@
+name: Bonnie
+path: 'bonnie/cats'
+description: This module creates a page with a list of cats and a form where users can leave photos of their pets.
+core_version_requirement: 9.x
+package: Custom
+type: module
