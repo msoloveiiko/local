@@ -15,7 +15,7 @@ class BonnieController extends ControllerBase {
   public function content() {
     $form = $this->formBuilder()->getForm('Drupal\bonnie\Form\BonnieForm');
     return [
-      '#theme' => 'cats_templates',
+      '#theme' => 'bonnie_templates',
       '#title' => 'Hello! You can add here a photo of your cat.',
       $form,
     ];

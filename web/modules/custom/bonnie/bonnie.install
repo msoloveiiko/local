@@ -1,0 +1,53 @@
+<?php
+
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CssCommand;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Database\Database;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_schema().
+ */
+function bonnie_schema() {
+  $schema['bonnie'] = [
+    'description' => 'Custom bonnie table.',
+    'fields' => [
+      'id' => [
+        'description' => 'ID',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'name' => [
+        'description' => 'Cats name',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'email' => [
+        'description' => 'Email',
+        'type' => 'text',
+        'not null' => TRUE,
+        'size' => 'big',
+      ],
+      'image' => [
+        'description' => 'Cats image',
+        'type' => 'text',
+        'not null' => TRUE,
+        'size' => 'big',
+      ],
+
+      'date_field' => [
+        'description' => 'Date field',
+        'type' => 'varchar',
+        'mysql_type' => 'date',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+  return $schema;
+}
