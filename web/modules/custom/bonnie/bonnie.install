@@ -14,7 +14,6 @@ function bonnie_schema() {
     'description' => 'Custom bonnie table.',
     'fields' => [
       'id' => [
-        'description' => 'ID',
         'type' => 'serial',
         'unsigned' => TRUE,
         'not null' => TRUE,
@@ -28,9 +27,10 @@ function bonnie_schema() {
       ],
       'email' => [
         'description' => 'Email',
-        'type' => 'text',
+        'type' => 'varchar',
+        'length' => 255,
         'not null' => TRUE,
-        'size' => 'big',
+        'default' => '',
       ],
       'image' => [
         'description' => 'Cats image',

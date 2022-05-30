@@ -1,4 +1,4 @@
-bonnie.content:
+bonnie.show_data:
   path: '/bonnie/cats'
   defaults:
     _controller:  '\Drupal\bonnie\Controller\BonnieController::content'

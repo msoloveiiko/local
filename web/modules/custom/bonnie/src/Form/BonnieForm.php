@@ -2,11 +2,17 @@
 
 namespace Drupal\bonnie\Form;
 
+use Drupal\Core\Ajax\MessageCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\CssCommand;
+
+// Use Drupal\Core\Url;
+// use Drupal\file\Entity\File;
+// use Drupal\Core\Database\Database;
+// use Symfony\Component\HttpFoundation\RedirectResponse;.
 
 /**
  * Class BonnieForm.
@@ -26,12 +32,14 @@ class BonnieForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $form['system_messages'] = [
+      '#markup' => '<div id="form-valid-message"></div>',
+    ];
     $form['name'] = [
       '#title' => $this->t('Cat name:'),
       '#type' => 'textfield',
       '#placeholder' => $this->t('From 2 to 32 letters'),
       '#required' => TRUE,
-      '#suffix' => '<span class="name-valid-message"></span>',
     ];
 
     $form['email'] = [
@@ -50,15 +58,16 @@ class BonnieForm extends FormBase {
       '#suffix' => '<span class="email-valid-message"></span>',
     ];
     $form['image'] = [
-      '#type' => 'managed_file',
       '#title' => $this->t('Cat image:'),
+      '#description' => $this->t('Allowed photo format png jpg jpeg/ no more than 2MB'),
+      '#type' => 'managed_file',
+      '#required' => TRUE,
+      '#preview_image_style' => 'medium',
+      '#upload_location' => 'public://',
       '#upload_validators' => [
         'file_validate_extensions' => ['png jpg jpeg'],
         'file_validate_size' => [2097152],
       ],
-      '#preview_image_style' => 'medium',
-      '#upload_location' => 'public://',
-      '#required' => TRUE,
     ];
     $form['actions']['submit'] = [
       '#type' => 'submit',
@@ -67,7 +76,6 @@ class BonnieForm extends FormBase {
       '#ajax' => [
         'callback' => '::submitForm',
       ],
-      '#suffix' => '<span class="valid-message"></span>',
     ];
     return $form;
   }
@@ -79,6 +87,24 @@ class BonnieForm extends FormBase {
   }
 
   /**
+   * Ajax callback to validate the email field.
+   */
+  public function validateEmailAjax(array &$form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    if (preg_match('/^[a-z_-]+@[a-z0-9.-]+\.[a-z]{2,4}$/', $form_state->getValue('email'))) {
+      $css = ['border' => '3px solid green'];
+      $response->addCommand(new CssCommand('#edit-email', $css));
+      $response->addCommand(new HtmlCommand('.email-valid-message', $this->t('Email ok.')));
+    }
+    else {
+      $css = ['border' => '3px solid red'];
+      $response->addCommand(new CssCommand('#edit-email', $css));
+      $response->addCommand(new HtmlCommand('.email-valid-message', $this->t('Email not valid.')));
+    }
+    return $response;
+  }
+
+  /**
    * {@inheritdoc}
    *
    * @throws \Exception
@@ -86,60 +112,30 @@ class BonnieForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
     if (!$form_state->getValue('name')
-      || empty($form_state->getValue('name'))
-    ) {
-      $response->addCommand(new HtmlCommand('.name-valid-message', $this->t('Enter cat name.')));
+          || empty($form_state->getValue('name'))
+        ) {
+      $response->addCommand(new MessageCommand($this->t('Enter cat name.'), '.form-valid-message', ["type" => "error"]));
+    }
+    elseif (strlen($form_state->getValue('name')) < 2) {
+      $response->addCommand(new MessageCommand($this->t('Name is too short.'), '.form-valid-message', ["type" => "error"]));
+    }
+    elseif (strlen($form_state->getValue('name')) > 32) {
+      $response->addCommand(new MessageCommand($this->t('Name is too long.'), '.form-valid-message', ["type" => "error"]));
     }
     elseif (!$form_state->getValue('email')
       || empty($form_state->getValue('email'))
     ) {
-      $response->addCommand(new HtmlCommand('.email-valid-message', $this->t('Enter email.')));
+      $response->addCommand(new MessageCommand($this->t('Enter email.'), '.form-valid-message', ["type" => "error"]));
     }
-    if (!$form_state->getValue('email')
-      || empty($form_state->getValue('email'))
+    elseif (!$form_state->getValue('image')
+      || empty($form_state->getValue('image'))
     ) {
-      $response->addCommand(new HtmlCommand('.email-valid-message', $this->t('Enter email.')));
-    }
-    elseif (!$form_state->getValue('name')
-      || empty($form_state->getValue('name'))
-    ) {
-      $response->addCommand(new HtmlCommand('.name-valid-message', $this->t('Enter cat name.')));
-    }
-    elseif (strlen($form_state->getValue('name')) < 2) {
-      $response->addCommand(new HtmlCommand('.name-valid-message', $this->t('Name is too short.')));
-
-    }
-    elseif (strlen($form_state->getValue('name')) > 32) {
-      $response->addCommand(new HtmlCommand('.name-valid-message', $this->t('Name is too long.')));
+      $response->addCommand(new MessageCommand($this->t('Enter image.'), '.form-valid-message', ["type" => "error"]));
     }
     else {
-      $response->addCommand(new HtmlCommand('.valid-message', $this->t('Name added.')));
+      $response->addCommand(new MessageCommand($this->t('Cat added .'), '.form-valid-message', ["type" => "status"]));
     }
-    return $response;
-  }
 
-  /**
-   * Ajax callback to validate the email field.
-   */
-  public function validateEmailAjax(array &$form, FormStateInterface $form_state) {
-    $response = new AjaxResponse();
-    if (!$form_state->getValue('email')
-      || empty($form_state->getValue('email'))
-    ) {
-      $css = ['border' => '3px solid red'];
-      $response->addCommand(new CssCommand('#edit-email', $css));
-      $response->addCommand(new HtmlCommand('.email-valid-message', $this->t('Enter email.')));
-    }
-    elseif (preg_match('/^[a-z_-]+@[a-z0-9.-]+\.[a-z]{2,4}$/', $form_state->getValue('email'))) {
-      $css = ['border' => '3px solid green'];
-      $response->addCommand(new CssCommand('#edit-email', $css));
-      $response->addCommand(new HtmlCommand('.email-valid-message', $this->t('Enter ok.')));
-    }
-    else {
-      $css = ['border' => '3px solid red'];
-      $response->addCommand(new CssCommand('#edit-email', $css));
-      $response->addCommand(new HtmlCommand('.email-valid-message', $this->t('Email not valid.')));
-    }
     return $response;
   }
 
