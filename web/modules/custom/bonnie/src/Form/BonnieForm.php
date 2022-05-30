@@ -3,16 +3,13 @@
 namespace Drupal\bonnie\Form;
 
 use Drupal\Core\Ajax\MessageCommand;
+use Drupal\Core\Database\Database;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\CssCommand;
-
-// Use Drupal\Core\Url;
-// use Drupal\file\Entity\File;
-// use Drupal\Core\Database\Database;
-// use Symfony\Component\HttpFoundation\RedirectResponse;.
+use Drupal\file\Entity\File;
 
 /**
  * Class BonnieForm.
@@ -112,8 +109,8 @@ class BonnieForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
     if (!$form_state->getValue('name')
-          || empty($form_state->getValue('name'))
-        ) {
+      || empty($form_state->getValue('name'))
+    ) {
       $response->addCommand(new MessageCommand($this->t('Enter cat name.'), '.form-valid-message', ["type" => "error"]));
     }
     elseif (strlen($form_state->getValue('name')) < 2) {
@@ -133,10 +130,26 @@ class BonnieForm extends FormBase {
       $response->addCommand(new MessageCommand($this->t('Enter image.'), '.form-valid-message', ["type" => "error"]));
     }
     else {
-      $response->addCommand(new MessageCommand($this->t('Cat added .'), '.form-valid-message', ["type" => "status"]));
-    }
+      $conn = Database::getConnection();
 
+      $fields["cat_name"] = $form_state->getValue('name');
+      $fields["your_email"] = $form_state->getValue('email');
+      $fid = $form_state->getValue('image');
+      $file = File::load($fid[0]);
+      $file->setPermanent();
+      $file->save();
+      $uri = $file->getFileUri();
+      $url = file_create_url($uri);
+      $fields["cat_photo"] = $url;
+      $current_date = \Drupal::time()->getCurrentTime();
+      $today_date = \Drupal::service('date.formatter')->format($current_date, 'custom', 'd/M/Y H:i:s');
+      $fields["date"] = $today_date;
+
+      $conn->insert('bonnie')->fields($fields)->execute();
+      $response->addCommand(new MessageCommand($this->t('Thank'), '.form-valid-message', ['type' => 'status']));
+    }
     return $response;
+
   }
 
 }

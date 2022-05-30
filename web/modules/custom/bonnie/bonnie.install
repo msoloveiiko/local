@@ -18,31 +18,29 @@ function bonnie_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
       ],
-      'name' => [
+      'cat_name' => [
         'description' => 'Cats name',
         'type' => 'varchar',
         'length' => 32,
         'not null' => TRUE,
         'default' => '',
       ],
-      'email' => [
+      'your_email' => [
         'description' => 'Email',
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
         'default' => '',
       ],
-      'image' => [
+      'cat_photo' => [
         'description' => 'Cats image',
-        'type' => 'text',
+        'type' => 'varchar',
+        'length' => 255,
         'not null' => TRUE,
-        'size' => 'big',
       ],
-
-      'date_field' => [
+      'date' => [
         'description' => 'Date field',
         'type' => 'varchar',
-        'mysql_type' => 'date',
         'length' => 255,
         'not null' => TRUE,
       ],

@@ -10,14 +10,18 @@ use Drupal\Core\Controller\ControllerBase;
 class BonnieController extends ControllerBase {
 
   /**
-   * Returns the add bonnie form.
+   *
    */
   public function content() {
-    $form = $this->formBuilder()->getForm('Drupal\bonnie\Form\BonnieForm');
+    $BonnieForm = \Drupal::formBuilder()->getForm('Drupal\bonnie\Form\bonnieForm');
+    $block_manager = \Drupal::service('plugin.manager.block');
+    $config = [];
+    $bonnie_items_block = $block_manager->createInstance('bonnie_items', $config);
     return [
-      '#theme' => 'bonnie_templates',
+      '#theme' => 'bonnie_template',
       '#title' => 'Hello! You can add here a photo of your cat.',
-      $form,
+      '#form' => $BonnieForm,
+      '#bonnie' => $bonnie_items_block->build(),
     ];
   }
 
