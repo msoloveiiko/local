@@ -142,7 +142,7 @@ class BonnieForm extends FormBase {
       $url = file_create_url($uri);
       $fields["cat_photo"] = $url;
       $current_date = \Drupal::time()->getCurrentTime();
-      $today_date = \Drupal::service('date.formatter')->format($current_date, 'custom', 'd/M/Y H:i:s');
+      $today_date = \Drupal::service('date.formatter')->format($current_date, 'custom', 'd/M/Y h:i:s');
       $fields["date"] = $today_date;
 
       $conn->insert('bonnie')->fields($fields)->execute();

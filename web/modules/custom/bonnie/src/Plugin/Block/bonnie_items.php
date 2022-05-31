@@ -6,6 +6,7 @@
 namespace Drupal\bonnie\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+
 /**
  * Provides a bonnie_items.
  *

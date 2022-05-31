@@ -1,0 +1,27 @@
+.line {
+  margin-top: 60px;
+}
+.bonnie-items {
+  margin: 70px 120px 60px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.bonnie-item {
+  display: flex;
+  margin: 15px 0;
+}
+.image-item {
+  margin-right: 15px;
+}
+.information-item {
+  margin: auto 0;
+}
+.item {
+  margin: 15px 0;
+  font-size: 18px;
+}
+.email_link {
+  text-decoration: none;
+  color: #1b1bf5;
+}
