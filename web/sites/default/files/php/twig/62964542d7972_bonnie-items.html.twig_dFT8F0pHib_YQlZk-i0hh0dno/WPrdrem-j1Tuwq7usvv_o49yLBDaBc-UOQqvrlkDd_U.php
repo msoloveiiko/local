@@ -73,7 +73,24 @@ class __TwigTemplate_db0f050090a699c4637809955561059375f5f20bd03fbd7a021cc8555d1
             echo t("Date added: &nbsp", array());
             echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["item"], "date", [], "any", false, false, true, 13), 13, $this->source), "html", null, true);
             echo "</div>
-    </div>
+      ";
+            // line 14
+            if (twig_get_attribute($this->env, $this->source, ($context["user"] ?? null), "hasPermission", [0 => "Delete and edit cats"], "method", false, false, true, 14)) {
+                // line 15
+                echo "        <div class=\"cats-editor\">
+          <button class=\"cats-edit\" data-itemId=\"";
+                // line 16
+                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["item"], "id", [], "any", false, false, true, 16), 16, $this->source), "html", null, true);
+                echo "\">EDIT</button>
+          <button class=\"cats-delete\" data-itemId=\"";
+                // line 17
+                echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["item"], "id", [], "any", false, false, true, 17), 17, $this->source), "html", null, true);
+                echo "\">DELETE</button>
+        </div>
+      ";
+            }
+            // line 20
+            echo "    </div>
   </div>
 ";
         }
@@ -94,7 +111,7 @@ class __TwigTemplate_db0f050090a699c4637809955561059375f5f20bd03fbd7a021cc8555d1
 
     public function getDebugInfo()
     {
-        return array (  73 => 13,  65 => 11,  63 => 10,  58 => 9,  51 => 5,  47 => 4,  43 => 2,  39 => 1,);
+        return array (  93 => 20,  87 => 17,  83 => 16,  80 => 15,  78 => 14,  73 => 13,  65 => 11,  63 => 10,  58 => 9,  51 => 5,  47 => 4,  43 => 2,  39 => 1,);
     }
 
     public function getSourceContext()
@@ -104,13 +121,13 @@ class __TwigTemplate_db0f050090a699c4637809955561059375f5f20bd03fbd7a021cc8555d1
     
     public function checkSecurity()
     {
-        static $tags = array("for" => 1, "trans" => 9);
+        static $tags = array("for" => 1, "trans" => 9, "if" => 14);
         static $filters = array("escape" => 4);
         static $functions = array();
 
         try {
             $this->sandbox->checkSecurity(
-                ['for', 'trans'],
+                ['for', 'trans', 'if'],
                 ['escape'],
                 []
             );
