@@ -23,14 +23,36 @@ class DeleteBonnieForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $form['#attributes']['class'][] = 'form-delete';
+
+    $form['title'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'h2',
+      '#value' => $this->t('Do you want delete cat?'),
+    ];
+    $form['actions']['submit'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('DELETE'),
+    ];
+    $form['cancel'] = [
+      '#type' => 'button',
+      '#value' => $this->t('CANCEL'),
+    ];
+    $form['id-item'] = [
+      '#type' => 'hidden',
+    ];
+    return $form;
   }
 
   /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-
+    $query = \Drupal::database()->delete('bonnie');
+    $idValue = $form_state->getValue('id-item');
+    $query->condition('id', $idValue);
+    $query->execute();
+    \Drupal::messenger()->addStatus($this->t('Cat deleted.'));
   }
 
 }
-

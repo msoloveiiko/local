@@ -1,19 +1,24 @@
 @import "fonts.scss";
+.region-primary-menu {
+  width: 75%;
+  margin: 0 auto;
+}
 .region-primary-menu .menu--main .menu {
-    display: flex;
-    a {
-        text-decoration: none;
-        padding: 15px 20px;
-        font-size: 20px;
-        text-transform: uppercase;
-        color: black;
-        background-color: aliceblue;
-        border-radius: 5px;
-        margin: 0 5px;
-        font-weight: 500;
-        &:hover {
-            box-shadow: 0 0 32px -5px white;
-        }
+  display: flex;
+  margin-left: 0;
+  a {
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: black;
+    background-color: aliceblue;
+    border-radius: 5px;
+    margin: 0 5px;
+    font-weight: 500;
+    &:hover {
+      box-shadow: 0 0 32px -5px white;
     }
+  }
 }
 
