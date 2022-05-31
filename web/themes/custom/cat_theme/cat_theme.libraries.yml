@@ -9,5 +9,3 @@ global:
       css/form.css: { }
       css/cat-item.css: { }
       css/footer.css: { }
-  js:
-    js/image.js: { }
