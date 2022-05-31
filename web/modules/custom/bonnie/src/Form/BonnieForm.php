@@ -151,7 +151,12 @@ class BonnieForm extends FormBase {
     return $response;
 
   }
+
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
   }
+
 }
