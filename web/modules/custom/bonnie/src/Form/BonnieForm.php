@@ -84,24 +84,6 @@ class BonnieForm extends FormBase {
   }
 
   /**
-   * Ajax callback to validate the email field.
-   */
-  public function validateEmailAjax(array &$form, FormStateInterface $form_state) {
-    $response = new AjaxResponse();
-    if (preg_match('/^[a-z_-]+@[a-z0-9.-]+\.[a-z]{2,4}$/', $form_state->getValue('email'))) {
-      $css = ['border' => '3px solid green'];
-      $response->addCommand(new CssCommand('#edit-email', $css));
-      $response->addCommand(new HtmlCommand('.email-valid-message', $this->t('Email ok.')));
-    }
-    else {
-      $css = ['border' => '3px solid red'];
-      $response->addCommand(new CssCommand('#edit-email', $css));
-      $response->addCommand(new HtmlCommand('.email-valid-message', $this->t('Email not valid.')));
-    }
-    return $response;
-  }
-
-  /**
    * {@inheritdoc}
    *
    * @throws \Exception
@@ -150,6 +132,24 @@ class BonnieForm extends FormBase {
     }
     return $response;
 
+  }
+
+  /**
+   * Ajax callback to validate the email field.
+   */
+  public function validateEmailAjax(array &$form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    if (preg_match('/^[a-z_-]+@[a-z0-9.-]+\.[a-z]{2,4}$/', $form_state->getValue('email'))) {
+      $css = ['border' => '3px solid green'];
+      $response->addCommand(new CssCommand('#edit-email', $css));
+      $response->addCommand(new HtmlCommand('.email-valid-message', $this->t('Email ok.')));
+    }
+    else {
+      $css = ['border' => '3px solid red'];
+      $response->addCommand(new CssCommand('#edit-email', $css));
+      $response->addCommand(new HtmlCommand('.email-valid-message', $this->t('Email not valid.')));
+    }
+    return $response;
   }
 
   /**

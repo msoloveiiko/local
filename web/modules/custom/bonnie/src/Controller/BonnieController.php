@@ -10,10 +10,15 @@ use Drupal\Core\Controller\ControllerBase;
 class BonnieController extends ControllerBase {
 
   /**
+   * Returns a page.
    *
+   * @return array
+   *   A renderable array.
    */
   public function content() {
-    $BonnieForm = \Drupal::formBuilder()->getForm('Drupal\bonnie\Form\bonnieForm');
+    $BonnieForm = \Drupal::formBuilder()->getForm('Drupal\bonnie\Form\BonnieForm');
+    $DeleteBonnieForm = \Drupal::formBuilder()->getForm('Drupal\bonnie\Form\DeleteBonnieForm');
+    $EditForm = \Drupal::formBuilder()->getForm('Drupal\bonnie\Form\EditForm');
     $block_manager = \Drupal::service('plugin.manager.block');
     $config = [];
     $bonnie_items_block = $block_manager->createInstance('bonnie_items', $config);
@@ -22,6 +27,8 @@ class BonnieController extends ControllerBase {
       '#title' => 'Hello! You can add here a photo of your cat.',
       '#form' => $BonnieForm,
       '#bonnie' => $bonnie_items_block->build(),
+      '#DeleteBonnieForm' => $DeleteBonnieForm,
+      '#EditForm' => $EditForm,
     ];
   }
 
