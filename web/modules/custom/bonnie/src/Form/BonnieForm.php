@@ -71,7 +71,7 @@ class BonnieForm extends FormBase {
       '#value' => ('Add cat'),
       '#button_type' => 'primary',
       '#ajax' => [
-        'callback' => '::submitForm',
+        'callback' => [$this, 'ajaxSubmitCallback'],
       ],
     ];
     return $form;
@@ -106,7 +106,7 @@ class BonnieForm extends FormBase {
    *
    * @throws \Exception
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function ajaxSubmitCallback(array &$form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
     if (!$form_state->getValue('name')
       || empty($form_state->getValue('name'))
@@ -151,5 +151,7 @@ class BonnieForm extends FormBase {
     return $response;
 
   }
+  public function submitForm(array &$form, FormStateInterface $form_state) {
 
+  }
 }
