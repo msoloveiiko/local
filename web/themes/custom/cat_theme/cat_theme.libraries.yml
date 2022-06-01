@@ -8,4 +8,7 @@ global:
       css/main-menu.css: { }
       css/form.css: { }
       css/cat-item.css: { }
+      css/deleteform.css: { }
       css/footer.css: { }
+  js:
+    js/deleteform.js: { }

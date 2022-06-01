@@ -22,7 +22,7 @@ class bonnie_items extends BlockBase {
   public function build() {
     $db = \Drupal::database();
     $query = $db->select('bonnie', 'b');
-    $query->fields('b', ['cat_name', 'your_email', 'cat_photo', 'date']);
+    $query->fields('b', ['id', 'cat_name', 'your_email', 'cat_photo', 'date']);
     $query->orderBy('date', 'DESC');
     $result = $query->execute()->fetchAll();
     return array(

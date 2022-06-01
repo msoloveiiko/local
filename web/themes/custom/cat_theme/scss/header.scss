@@ -1,6 +1,6 @@
-@import "fonts.scss";
+@import "_variables.scss";
 header {
-  background-color: #0d4e63;
+  background-color: $blue;
   padding: 85px 0 10px;
 }
 .region-logo .field__item p {

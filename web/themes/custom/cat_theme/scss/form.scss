@@ -2,13 +2,13 @@
   text-align: center;
   margin: 40px 0 20px;
 }
-form {
-  position: relative;
+.bonnie-form {
   width: 75%;
   margin: 100px auto 0;
+  position: relative;
 }
 .form-item-name {
-  margin: 60px 0 0;
+  margin: 60px 0 20px;
   label {
     font-size: 18px;
   }
@@ -35,11 +35,6 @@ form {
   color: aliceblue;
   border-radius: 5px;
 }
-.name-valid-message {
-  position: absolute;
-  left: 425px;
-  top: 15px;
-}
 
 .form-item-email {
   margin: 10px 0 0;
@@ -54,11 +49,6 @@ form {
     border: 1px solid black;
     border-radius: 3px;
   }
-}
-.email-valid-message {
-  position: absolute;
-  left: 743px;
-  top: 77px;
 }
 .form-item-image {
   margin: 50px 0 0;

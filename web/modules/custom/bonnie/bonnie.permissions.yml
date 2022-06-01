@@ -1,0 +1,4 @@
+administer admin_form:
+title: 'Administer admin form'
+description: 'Allows the ability to change settings'
+restrict access: true

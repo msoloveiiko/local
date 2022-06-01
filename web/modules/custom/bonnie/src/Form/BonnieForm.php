@@ -52,7 +52,7 @@ class BonnieForm extends FormBase {
           'message' => NULL,
         ],
       ],
-      '#suffix' => '<span class="email-valid-message"></span>',
+      '#prefix' => '<span class="email-valid-message"></span>',
     ];
     $form['image'] = [
       '#title' => $this->t('Cat image:'),
@@ -93,23 +93,26 @@ class BonnieForm extends FormBase {
     if (!$form_state->getValue('name')
       || empty($form_state->getValue('name'))
     ) {
-      $response->addCommand(new MessageCommand($this->t('Enter cat name.'), '.form-valid-message', ["type" => "error"]));
+      $response->addCommand(new MessageCommand($this->t('Enter cat name.'), '#form-valid-message', ["type" => "error"]));
     }
     elseif (strlen($form_state->getValue('name')) < 2) {
-      $response->addCommand(new MessageCommand($this->t('Name is too short.'), '.form-valid-message', ["type" => "error"]));
+      $response->addCommand(new MessageCommand($this->t('Name is too short.'), '#form-valid-message', ["type" => "error"]));
     }
     elseif (strlen($form_state->getValue('name')) > 32) {
-      $response->addCommand(new MessageCommand($this->t('Name is too long.'), '.form-valid-message', ["type" => "error"]));
+      $response->addCommand(new MessageCommand($this->t('Name is too long.'), '#form-valid-message', ["type" => "error"]));
     }
     elseif (!$form_state->getValue('email')
       || empty($form_state->getValue('email'))
     ) {
-      $response->addCommand(new MessageCommand($this->t('Enter email.'), '.form-valid-message', ["type" => "error"]));
+      $response->addCommand(new MessageCommand($this->t('Enter email.'), '#form-valid-message', ["type" => "error"]));
+    }
+    elseif (!preg_match('/^[a-z_-]+@[a-z0-9.-]+\.[a-z]{2,4}$/', $form_state->getValue('email'))) {
+      $response->addCommand(new MessageCommand($this->t('Email not valid.'), '#form-valid-message', ["type" => "error"]));
     }
     elseif (!$form_state->getValue('image')
       || empty($form_state->getValue('image'))
     ) {
-      $response->addCommand(new MessageCommand($this->t('Enter image.'), '.form-valid-message', ["type" => "error"]));
+      $response->addCommand(new MessageCommand($this->t('Enter image.'), '#form-valid-message', ["type" => "error"]));
     }
     else {
       $conn = Database::getConnection();
@@ -128,7 +131,7 @@ class BonnieForm extends FormBase {
       $fields["date"] = $today_date;
 
       $conn->insert('bonnie')->fields($fields)->execute();
-      $response->addCommand(new MessageCommand($this->t('Cat added'), '.form-valid-message', ['type' => 'status']));
+      $response->addCommand(new MessageCommand($this->t('Cat added'), '#form-valid-message', ['type' => 'status']));
     }
     return $response;
 

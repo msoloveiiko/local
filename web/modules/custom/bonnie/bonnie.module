@@ -9,8 +9,8 @@ function bonnie_theme() {
         'title' => NULL,
         'form' => NULL,
         'bonnie' => NULL,
-        'EditForm' => NULL,
         'DeleteBonnieForm' => NULL,
+        'EditForm' => NULL,
       ],
     ],
     'bonnie-items' => [

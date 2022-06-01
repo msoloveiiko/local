@@ -11,7 +11,7 @@
         <a href="mailto:{{ item.your_email }}" class="email_link">{{ item.your_email }}</a>
       </div>
       <div class="item date">{% trans %}Date added: &nbsp {% endtrans %}{{ item.date }}</div>
-      {% if %}
+      {% if user.hasPermission('Administer cat form') %}
         <div class="cat-editor">
           <button class="cat-edit" data-itemId="{{ item.id }}">EDIT</button>
           <button class="cat-delete" data-itemId="{{ item.id }}">DELETE</button>

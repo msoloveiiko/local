@@ -33,13 +33,28 @@ class DeleteBonnieForm extends FormBase {
     $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('DELETE'),
+      '#attributes' => [
+        'class' => [
+          'form-submit-delete',
+        ],
+      ],
     ];
     $form['cancel'] = [
       '#type' => 'button',
       '#value' => $this->t('CANCEL'),
+      '#attributes' => [
+        'class' => [
+          'form-cancel',
+        ],
+      ],
     ];
     $form['id-item'] = [
       '#type' => 'hidden',
+      '#attributes' => [
+        'class' => [
+          'form-id-item',
+        ],
+      ],
     ];
     return $form;
   }
