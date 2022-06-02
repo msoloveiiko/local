@@ -1,4 +1,3 @@
-administer admin_form:
-title: 'Administer admin form'
-description: 'Allows the ability to change settings'
-restrict access: true
+Delete and edit cat field:
+  title: 'Delete and edit cat field'
+  restrict access: true

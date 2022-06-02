@@ -56,15 +56,22 @@ class __TwigTemplate_db0f050090a699c4637809955561059375f5f20bd03fbd7a021cc8555d1
       <div class=\"item cat_name\">";
             // line 9
             echo t("Cat name: &nbsp", array());
+            echo "<span data-itemId=\"";
+            echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["item"], "id", [], "any", false, false, true, 9), 9, $this->source), "html", null, true);
+            echo "\" class=\"your-cat-name\">";
             echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["item"], "cat_name", [], "any", false, false, true, 9), 9, $this->source), "html", null, true);
-            echo "</div>
-      <div class=\"item your_email\">";
+            echo "</span></div>
+      <div class=\"item your_email\" data-itemId=\"";
             // line 10
+            echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["item"], "id", [], "any", false, false, true, 10), 10, $this->source), "html", null, true);
+            echo "\">";
             echo t("Your email:", array());
             // line 11
             echo "        <a href=\"mailto:";
             echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["item"], "your_email", [], "any", false, false, true, 11), 11, $this->source), "html", null, true);
-            echo "\" class=\"email_link\">";
+            echo "\" class=\"your-email-link\" data-itemId=\"";
+            echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["item"], "id", [], "any", false, false, true, 11), 11, $this->source), "html", null, true);
+            echo "\">";
             echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["item"], "your_email", [], "any", false, false, true, 11), 11, $this->source), "html", null, true);
             echo "</a>
       </div>
@@ -75,17 +82,17 @@ class __TwigTemplate_db0f050090a699c4637809955561059375f5f20bd03fbd7a021cc8555d1
             echo "</div>
       ";
             // line 14
-            if (twig_get_attribute($this->env, $this->source, ($context["user"] ?? null), "hasPermission", [0 => "Administer cat form"], "method", false, false, true, 14)) {
+            if (twig_get_attribute($this->env, $this->source, ($context["user"] ?? null), "hasPermission", [0 => "Delete and edit cat field"], "method", false, false, true, 14)) {
                 // line 15
-                echo "        <div class=\"cat-editor\">
+                echo "        <div class=\"cat-settings\">
           <button class=\"cat-edit\" data-itemId=\"";
                 // line 16
                 echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["item"], "id", [], "any", false, false, true, 16), 16, $this->source), "html", null, true);
-                echo "\">EDIT</button>
+                echo "\">Edit</button>
           <button class=\"cat-delete\" data-itemId=\"";
                 // line 17
                 echo $this->extensions['Drupal\Core\Template\TwigExtension']->escapeFilter($this->env, $this->sandbox->ensureToStringAllowed(twig_get_attribute($this->env, $this->source, $context["item"], "id", [], "any", false, false, true, 17), 17, $this->source), "html", null, true);
-                echo "\">DELETE</button>
+                echo "\">Delete</button>
         </div>
       ";
             }
@@ -111,7 +118,7 @@ class __TwigTemplate_db0f050090a699c4637809955561059375f5f20bd03fbd7a021cc8555d1
 
     public function getDebugInfo()
     {
-        return array (  93 => 20,  87 => 17,  83 => 16,  80 => 15,  78 => 14,  73 => 13,  65 => 11,  63 => 10,  58 => 9,  51 => 5,  47 => 4,  43 => 2,  39 => 1,);
+        return array (  100 => 20,  94 => 17,  90 => 16,  87 => 15,  85 => 14,  80 => 13,  70 => 11,  66 => 10,  58 => 9,  51 => 5,  47 => 4,  43 => 2,  39 => 1,);
     }
 
     public function getSourceContext()

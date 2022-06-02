@@ -6,15 +6,15 @@
         </a>
     </div>
     <div class="information-item">
-      <div class="item cat_name">{% trans %}Cat name: &nbsp {% endtrans %}{{ item.cat_name }}</div>
-      <div class="item your_email">{% trans %}Your email:{% endtrans %}
-        <a href="mailto:{{ item.your_email }}" class="email_link">{{ item.your_email }}</a>
+      <div class="item cat_name">{% trans %}Cat name: &nbsp {% endtrans %}<span data-itemId="{{ item.id }}" class="your-cat-name">{{ item.cat_name }}</span></div>
+      <div class="item your_email" data-itemId="{{ item.id }}">{% trans %}Your email:{% endtrans %}
+        <a href="mailto:{{ item.your_email }}" class="your-email-link" data-itemId="{{ item.id }}">{{ item.your_email }}</a>
       </div>
       <div class="item date">{% trans %}Date added: &nbsp {% endtrans %}{{ item.date }}</div>
-      {% if user.hasPermission('Administer cat form') %}
-        <div class="cat-editor">
-          <button class="cat-edit" data-itemId="{{ item.id }}">EDIT</button>
-          <button class="cat-delete" data-itemId="{{ item.id }}">DELETE</button>
+      {% if user.hasPermission('Delete and edit cat field') %}
+        <div class="cat-settings">
+          <button class="cat-edit" data-itemId="{{ item.id }}">Edit</button>
+          <button class="cat-delete" data-itemId="{{ item.id }}">Delete</button>
         </div>
       {% endif %}
     </div>

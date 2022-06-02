@@ -31,5 +31,4 @@ class BonnieController extends ControllerBase {
       '#EditForm' => $EditForm,
     ];
   }
-
 }
