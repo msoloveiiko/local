@@ -17,6 +17,13 @@ function bonnie_theme() {
       'variables' => [
         'items' => NULL,
       ],
+    ],
+    'cat-structure-table' => [
+      'variables' => [
+        'items' => NULL,
+        'DeleteBonnieForm' => NULL,
+        'EditForm' => NULL,
+      ],
     ]
   ];
 }
