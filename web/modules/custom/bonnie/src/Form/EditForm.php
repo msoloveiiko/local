@@ -82,16 +82,6 @@ class EditForm extends FormBase {
       ],
     ];
 
-    $form['cancel'] = [
-      '#type' => 'button',
-      '#value' => $this->t('Cancel'),
-      '#attributes' => [
-        'class' => [
-          'form-cancel-edit',
-        ],
-      ],
-    ];
-
     $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Save'),
@@ -102,6 +92,16 @@ class EditForm extends FormBase {
       ],
       '#ajax' => [
         'callback' => [$this, 'editAjaxSubmitCallback'],
+      ],
+    ];
+
+    $form['cancel'] = [
+      '#type' => 'button',
+      '#value' => $this->t('Cancel'),
+      '#attributes' => [
+        'class' => [
+          'form-cancel-edit',
+        ],
       ],
     ];
 
