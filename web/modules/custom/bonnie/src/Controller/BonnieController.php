@@ -16,19 +16,19 @@ class BonnieController extends ControllerBase {
    *   A renderable array.
    */
   public function content() {
-    $BonnieForm = \Drupal::formBuilder()->getForm('Drupal\bonnie\Form\BonnieForm');
-    $DeleteBonnieForm = \Drupal::formBuilder()->getForm('Drupal\bonnie\Form\DeleteBonnieForm');
-    $EditForm = \Drupal::formBuilder()->getForm('Drupal\bonnie\Form\EditForm');
+    $bonnieForm = \Drupal::formBuilder()->getForm('Drupal\bonnie\Form\BonnieForm');
+    $deleteBonnieForm = \Drupal::formBuilder()->getForm('Drupal\bonnie\Form\DeleteBonnieForm');
+    $editForm = \Drupal::formBuilder()->getForm('Drupal\bonnie\Form\EditForm');
     $block_manager = \Drupal::service('plugin.manager.block');
     $config = [];
     $bonnie_items_block = $block_manager->createInstance('bonnie_items', $config);
     return [
       '#theme' => 'bonnie_template',
       '#title' => 'Hello! You can add here a photo of your cat.',
-      '#form' => $BonnieForm,
+      '#form' => $bonnieForm,
       '#bonnie' => $bonnie_items_block->build(),
-      '#DeleteBonnieForm' => $DeleteBonnieForm,
-      '#EditForm' => $EditForm,
+      '#DeleteBonnieForm' => $deleteBonnieForm,
+      '#EditForm' => $editForm,
     ];
   }
 }

@@ -6,11 +6,5 @@ global:
     component:
       css/header.css: { }
       css/main-menu.css: { }
-      css/form.css: { }
-      css/cat-item.css: { }
-      css/deleteform.css: { }
-      css/editform.css: { }
       css/footer.css: { }
-  js:
-    js/deleteform.js: { }
-    js/editform.js: { }
+

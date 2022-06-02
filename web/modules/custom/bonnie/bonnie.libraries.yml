@@ -1,5 +1,18 @@
 bonnie-module:
   version: VERSION
   css:
-    components:
+    component:
+      css/form.css: { }
+      css/cat-item.css: { }
+      css/deleteform.css: { }
+      css/editform.css: { }
+  js:
+    js/deleteform.js: { }
+    js/editform.js: { }
+cat-structure:
+  version: VERSION
+  css:
+    component:
       css/cat-structure-table.css: { }
+  js:
+    js/delete-all-bonnie-form.js: { }
