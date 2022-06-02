@@ -7,3 +7,24 @@ const nameItems = document.querySelectorAll('.your-cat-name');
 const nameEdit = document.querySelector('.name-form-edit');
 const emailEdit = document.querySelector('.email-form-edit');
 
+editBtns.forEach(editBtn => {
+  editBtn.addEventListener('click', () => {
+    modalEdit.classList.add('modalEdit_active');
+    idItemEdit.value = editBtn.dataset.itemid;
+    nameItems.forEach(name => {
+      if(name.dataset.itemid === editBtn.dataset.itemid){
+        nameEdit.value = name.textContent;
+      }
+    });
+    emailItems.forEach(email => {
+      if(email.dataset.itemid === editBtn.dataset.itemid){
+        emailEdit.value = email.outerText;
+      }
+    });
+  })
+});
+
+cancelEditBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  modalEdit.classList.remove('modalEdit_active');
+});

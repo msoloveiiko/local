@@ -141,9 +141,7 @@ class EditForm extends FormBase {
     return $response;
   }
 
-  /**s
-   * {@inheritdoc}
-   *
+  /**
    * @throws \Exception
    */
   public function editAjaxSubmitCallback(array &$form, FormStateInterface $form_state) {
@@ -157,10 +155,33 @@ class EditForm extends FormBase {
     elseif (!preg_match('/^[a-z_-]+@[a-z0-9.-]+\.[a-z]{2,4}$/', $form_state->getValue('edit-email'))) {
       $response->addCommand(new MessageCommand($this->t('Email not valid.'), '#edit-form-messages', ["type" => "error"]));
     }
-    else {
+    elseif ($form_state->getValue('edit-image') == NULL) {
+      $query = \Drupal::database()->update('bonnie');
+      $query->fields([
+        'cat_name' => $form_state->getValue('edit-name'),
+        'your_email' => $form_state->getValue('edit-email'),
+      ]);
+      $query->condition('id', $form_state->getValue('id-item-edit'));
+      $query->execute();
       $response->addCommand(new MessageCommand($this->t('Information was changed.'), '#edit-form-messages', ["type" => "status"]));
     }
-
+    else {
+      $query = \Drupal::database()->update('bonnie');
+      $fid = $form_state->getValue('edit-image');
+      $file = File::load($fid[0]);
+      $file->setPermanent();
+      $file->save();
+      $uri = $file->getFileUri();
+      $url = file_create_url($uri);
+      $query->fields([
+        'cat_name' => $form_state->getValue('edit-name'),
+        'your_email' => $form_state->getValue('edit-email'),
+        'cat_photo' => $url,
+      ]);
+      $query->condition('id', $form_state->getValue('id-item-edit'));
+      $query->execute();
+      $response->addCommand(new MessageCommand($this->t('Information was changed.'), '#edit-form-messages', ["type" => "status"]));
+    }
     return $response;
   }
 
