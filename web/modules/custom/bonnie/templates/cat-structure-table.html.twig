@@ -1,1 +1,26 @@
-
+<div class="cat-fields">
+  {% for item in items %}
+    <div class="bonnie-item">
+      <div class="image_wrapper">
+        <a class="img_link" href ="{{ item.cat_photo }}">
+          <img src="{{ item.cat_photo }}" alt="cats photo">
+        </a>
+      </div>
+      <div class="information-item">
+        <div class="item cat_name">{% trans %}Cat name: &nbsp {% endtrans %}<span data-itemId="{{ item.id }}" class="your-cat-name">{{ item.cat_name }}</span></div>
+        <div class="item your_email" data-itemId="{{ item.id }}">{% trans %}Your email:{% endtrans %}
+          <a href="mailto:{{ item.your_email }}" class="your-email-link" data-itemId="{{ item.id }}">{{ item.your_email }}</a>
+        </div>
+        <div class="item date">{% trans %}Date added: &nbsp {% endtrans %}{{ item.date }}</div>
+        {% if user.hasPermission('Delete and edit cat field') %}
+          <div class="cat-settings">
+            <button class="cat-edit" data-itemId="{{ item.id }}">Edit</button>
+            <button class="cat-delete" data-itemId="{{ item.id }}">Delete</button>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{{ DeleteBonnieForm }}
+{{ EditForm }}

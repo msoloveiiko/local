@@ -1,0 +1,5 @@
+bonnie-module:
+  version: VERSION
+  css:
+    components:
+      css/cat-structure-table.css: { }
