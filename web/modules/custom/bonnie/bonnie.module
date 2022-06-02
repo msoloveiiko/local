@@ -23,6 +23,7 @@ function bonnie_theme() {
         'items' => NULL,
         'DeleteBonnieForm' => NULL,
         'EditForm' => NULL,
+        'DeleteAllBonnieForm' => NULL,
       ],
     ]
   ];

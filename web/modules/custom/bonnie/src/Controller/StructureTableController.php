@@ -27,12 +27,14 @@ class StructureTableController extends ControllerBase {
 
     $DeleteBonnieForm = \Drupal::formBuilder()->getForm("Drupal\bonnie\Form\DeleteBonnieForm");
     $EditForm = \Drupal::formBuilder()->getForm("Drupal\bonnie\Form\EditForm");
+    $DeleteAllBonnieForm = \Drupal::formBuilder()->getForm("Drupal\bonnie\Form\DeleteAllBonnieForm");
     return [
       "#theme" => "cat-structure-table",
       "#items" => $result,
       '#title' => 'Cat list',
       "#DeleteBonnieForm" => $DeleteBonnieForm,
       "#EditForm" => $EditForm,
+      "#DeleteAllBonnieForm" => $DeleteAllBonnieForm,
     ];
   }
 

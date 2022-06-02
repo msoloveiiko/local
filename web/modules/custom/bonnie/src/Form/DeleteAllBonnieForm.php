@@ -6,36 +6,35 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class DeleteBonnieForm.
+ * Class DeleteAllBonnieForm.
  *
  * @package Drupal\Bonnie\Form
  */
-class DeleteBonnieForm extends FormBase {
+class DeleteAllBonnieForm extends FormBase {
 
   /**
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'delete_bonnie_form';
+    return 'delete_all_bonnie_form';
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['#attributes']['class'][] = 'form-delete';
-
+    $form['#attributes']['class'][] = 'form-delete-all-cats';
     $form['title'] = [
       '#type' => 'html_tag',
       '#tag' => 'h2',
-      '#value' => $this->t('Do you want delete cat?'),
+      '#value' => $this->t('Do you want delete all cats?'),
     ];
     $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Delete'),
       '#attributes' => [
         'class' => [
-          'form-submit-delete',
+          'form-submit-delete-all-cats',
         ],
       ],
     ];
@@ -44,15 +43,7 @@ class DeleteBonnieForm extends FormBase {
       '#value' => $this->t('Cancel'),
       '#attributes' => [
         'class' => [
-          'form-cancel',
-        ],
-      ],
-    ];
-    $form['id-item'] = [
-      '#type' => 'hidden',
-      '#attributes' => [
-        'class' => [
-          'form-id-item',
+          'form-cancel-all-cat',
         ],
       ],
     ];
@@ -63,11 +54,8 @@ class DeleteBonnieForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $query = \Drupal::database()->delete('bonnie');
-    $idValue = $form_state->getValue('id-item');
-    $query->condition('id', $idValue);
-    $query->execute();
-    \Drupal::messenger()->addStatus($this->t('Cat deleted.'));
+    \Drupal::database()->delete('bonnie')->execute();
+    \Drupal::messenger()->addStatus($this->t('All cats were deleted.'));
   }
 
 }
