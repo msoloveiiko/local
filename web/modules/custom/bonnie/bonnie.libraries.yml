@@ -1,4 +1,4 @@
-bonnie-module:
+glodal:
   version: VERSION
   css:
     component:
@@ -16,3 +16,4 @@ cat-structure:
       css/cat-structure-table.css: { }
   js:
     js/delete-all-bonnie-form.js: { }
+    js/delete-checkbox.js: { }

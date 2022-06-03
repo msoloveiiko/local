@@ -28,6 +28,7 @@ class StructureTableController extends ControllerBase {
     $deleteBonnieForm = \Drupal::formBuilder()->getForm("Drupal\bonnie\Form\DeleteBonnieForm");
     $editForm = \Drupal::formBuilder()->getForm("Drupal\bonnie\Form\EditForm");
     $deleteAllBonnieForm = \Drupal::formBuilder()->getForm("Drupal\bonnie\Form\DeleteAllBonnieForm");
+    $deleteCheckbox = \Drupal::formBuilder()->getForm("Drupal\bonnie\Form\DeleteCheckbox");
     return [
       "#theme" => "cat-structure-table",
       "#items" => $result,
@@ -35,6 +36,7 @@ class StructureTableController extends ControllerBase {
       "#DeleteBonnieForm" => $deleteBonnieForm,
       "#EditForm" => $editForm,
       "#DeleteAllBonnieForm" => $deleteAllBonnieForm,
+      "#DeleteCheckbox" => $deleteCheckbox,
     ];
   }
 

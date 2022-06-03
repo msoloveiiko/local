@@ -15,22 +15,37 @@
   transition: 0.1s all ease;
   max-width: 500px;
   z-index: 50;
+  .button {
+    border: 1px solid $blue;
+    border-radius: 2px;
+    background-color: $blue;
+    font-weight: 500;
+    color: aliceblue;
+    padding: 6px 13px;
+    font-size: 15px;
+    margin: 0 8px;
+    background-image: none;
+    &:hover{
+      transition: all ease-in-out 0.3s;
+      background-color: black;
+    }
+  }
 }
 .modalDelete_active{
   visibility: visible;
   opacity: 1;
 }
-.form-submit-delete, .form-cancel{
-  border: 1px solid $blue;
-  border-radius: 2px;
-  background-color: $blue;
-  font-weight: 500;
-  color: aliceblue;
-  padding: 6px 13px;
-  font-size: 15px;
-  margin: 0 8px;
-  &:hover{
-    transition: all ease-in-out 0.3s;
-    background-color: black;
-  }
-}
+//.form-submit-delete, .form-cancel{
+//  border: 1px solid $blue;
+//  border-radius: 2px;
+//  background-color: $blue;
+//  font-weight: 500;
+//  color: aliceblue;
+//  padding: 6px 13px;
+//  font-size: 15px;
+//  margin: 0 8px;
+//  &:hover{
+//    transition: all ease-in-out 0.3s;
+//    background-color: black;
+//  }
+//}

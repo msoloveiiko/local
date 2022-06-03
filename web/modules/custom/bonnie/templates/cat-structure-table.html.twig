@@ -1,7 +1,9 @@
+<button class="delete-checkbox-cats">Delete the check mark</button>
 <button class="delete-all-cats">Delete all</button>
 <div class="cat-fields">
   {% for item in items %}
     <div class="bonnie-item">
+      <input data-itemId="{{ item.id }}" class="check-item" type="checkbox">
       <div class="image_wrapper">
         <a class="img_link" href ="{{ item.cat_photo }}">
           <img src="{{ item.cat_photo }}" alt="cats photo">
@@ -26,5 +28,6 @@
 {{ DeleteBonnieForm }}
 {{ EditForm }}
 {{ DeleteAllBonnieForm }}
-{{ attach_library('bonnie/bonnie-module') }}
+{{ DeleteCheckbox }}
+{{ attach_library('bonnie/glodal') }}
 {{ attach_library('bonnie/cat-structure') }}

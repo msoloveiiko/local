@@ -1,14 +1,16 @@
 @import "variables.scss";
-.cat-form-edit {
+.edit-form {
   position: relative;
-  display: none;
+}
+.cat-form-edit {
+  visibility: hidden;
   opacity: 0;
   width: 100%;
   position: fixed;
   height: auto;
   top: calc(50% - 80px);
   left: calc(50% - 250px);
-  padding: 25px 25px 50px;
+  padding: 25px 25px 80px;
   border: 1px solid $blue;
   box-shadow: 0px 0px 27px -6px $blue;
   border-radius: 4px;
@@ -19,16 +21,16 @@
   .form-submit-edit{
     position: absolute;
     bottom: 20px;
-    left: 32%;
+    left: 30%;
   }
   .form-cancel-edit{
     position: absolute;
     bottom: 20px;
-    right: 32%;
+    right: 30%;
   }
 }
 .modalEdit_active{
-  display: block;
+  visibility: visible;
   opacity: 1;
 }
 .form-submit-edit, .form-cancel-edit{
@@ -63,8 +65,7 @@
 }
 .form-item-edit-image {
   position: relative;
-  margin-top: 45px;
-  margin-bottom: 25px;
+  top: 30px;
   display: flex;
   flex-wrap: wrap;
   .description {

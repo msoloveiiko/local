@@ -59,12 +59,12 @@ class BonnieForm extends FormBase {
       '#description' => $this->t('Allowed photo format png jpg jpeg/ no more than 2MB'),
       '#type' => 'managed_file',
       '#required' => TRUE,
-      '#preview_image_style' => 'medium',
-      '#upload_location' => 'public://',
       '#upload_validators' => [
         'file_validate_extensions' => ['png jpg jpeg'],
         'file_validate_size' => [2097152],
       ],
+      '#preview_image_style' => 'medium',
+      '#upload_location' => 'public://',
     ];
     $form['actions']['submit'] = [
       '#type' => 'submit',

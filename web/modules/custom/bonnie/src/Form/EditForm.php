@@ -74,12 +74,12 @@ class EditForm extends FormBase {
       '#title' => $this->t('Change image:'),
       '#description' => $this->t('Allowed photo format png jpg jpeg/ no more than 2MB'),
       '#type' => 'managed_file',
-      '#preview_image_style' => 'medium',
-      '#upload_location' => 'public://',
       '#upload_validators' => [
         'file_validate_extensions' => ['png jpg jpeg'],
         'file_validate_size' => [2097152],
       ],
+      '#preview_image_style' => 'medium',
+      '#upload_location' => 'public://',
     ];
 
     $form['actions']['submit'] = [
