@@ -11,4 +11,4 @@ bonnie.display_data:
     _controller: '\Drupal\bonnie\Controller\StructureTableController::content'
     _title: 'Cat list'
   requirements:
-    _permission: 'access content'
+    _permission: 'Settings on cats list'

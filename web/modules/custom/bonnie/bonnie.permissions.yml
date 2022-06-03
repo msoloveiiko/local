@@ -1,3 +1,6 @@
 Delete and edit cat field:
   title: 'Delete and edit cat field'
   restrict access: true
+Settings on cats list:
+  title: 'Settings on cats list'
+  restrict access: true

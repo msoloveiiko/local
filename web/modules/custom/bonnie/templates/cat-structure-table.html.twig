@@ -1,5 +1,7 @@
+{% if user.hasPermission('Settings on cats list') %}
 <button class="delete-checkbox-cats">Delete the check mark</button>
 <button class="delete-all-cats">Delete all</button>
+{% endif %}
 <div class="cat-fields">
   {% for item in items %}
     <div class="bonnie-item">
