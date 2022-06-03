@@ -2,14 +2,18 @@
 html, body {
   font-family: 'Roboto', sans-serif;
   height: 100%;
+  margin: 0;
 }
 body {
   width: 100%;
   overflow-y: scroll;
+}
+.page {
+  height: 100%;
   position: relative;
 }
-.region-content {
-  margin-bottom: 100px;
+main {
+  min-height: 100%;
 }
 div[data-drupal-messages=""] {
   display: none;

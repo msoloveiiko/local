@@ -6,5 +6,4 @@ global:
     component:
       css/header.css: { }
       css/main-menu.css: { }
-      css/footer.css: { }
 
