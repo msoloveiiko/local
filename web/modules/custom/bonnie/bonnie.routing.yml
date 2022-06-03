@@ -4,6 +4,7 @@ bonnie.show_data:
     _controller:  '\Drupal\bonnie\Controller\BonnieController::content'
   requirements:
     _permission: 'access content'
+
 bonnie.display_data:
   path: '/admin/structure/cats_list'
   defaults:

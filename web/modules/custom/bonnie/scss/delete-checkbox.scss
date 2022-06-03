@@ -1,5 +1,5 @@
-@import "variables.scss";
-.delete_checkbox_form {
+@import "_variables.scss";
+#delete-checkbox-form {
   display: none;
   opacity: 0;
   width: 100%;
@@ -30,6 +30,22 @@
   font-size: 15px;
   margin: 0 8px;
   &:hover{
+    transition: all ease-in-out 0.3s;
+    background-color: black;
+  }
+}
+.delete-checkbox-cats {
+  border: 1px solid $blue;
+  border-radius: 2px;
+  background-color: $blue;
+  font-weight: 500;
+  color: aliceblue;
+  padding: 6px 13px;
+  font-size: 15px;
+  margin: 0 8px;
+  background-image: none;
+
+  &:hover {
     transition: all ease-in-out 0.3s;
     background-color: black;
   }

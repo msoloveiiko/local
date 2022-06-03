@@ -14,6 +14,8 @@ cat-structure:
   css:
     component:
       css/cat-structure-table.css: { }
+      css/delete-checkbox.css: { }
+      css/delete-all-cat-form.css: { }
   js:
     js/delete-all-bonnie-form.js: { }
     js/delete-checkbox.js: { }

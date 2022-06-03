@@ -1,0 +1,6 @@
+bonnie.display_data:
+  title: "Cats list"
+  description: "Cats list"
+  route_name: bonnie.display_data
+  parent: system.admin_structure
+  weight: 10
