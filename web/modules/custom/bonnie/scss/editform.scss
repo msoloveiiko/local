@@ -21,12 +21,12 @@
   .form-submit-edit{
     position: absolute;
     bottom: 20px;
-    left: 30%;
+    left: 27%;
   }
   .form-cancel-edit{
     position: absolute;
     bottom: 20px;
-    right: 30%;
+    right: 27%;
   }
 }
 .modalEdit_active{
@@ -41,7 +41,7 @@
   color: aliceblue;
   padding: 6px 13px;
   font-size: 15px;
-  margin: 0 8px;
+
   &:hover{
     transition: all ease-in-out 0.3s;
     background-color: black;

@@ -1,4 +1,4 @@
-@import "_variables.scss";
+@import "variables.scss";
 .line {
   margin-top: 30px;
   border: 3px solid $blue;
@@ -9,7 +9,7 @@
   margin: 70px auto;
 }
 .bonnie-item {
-  margin: 60px 0;
+  margin: 50px 0 60px;
   display: flex;
 }
 .image_wrapper {
@@ -50,6 +50,7 @@
   background-color: #0d4e63;
   color: aliceblue;
   border-radius: 2px;
+  cursor: pointer;
 }
 .cat-delete {
   padding: 6px 10px;
@@ -61,4 +62,5 @@
   background-color: #0d4e63;
   color: aliceblue;
   border-radius: 2px;
+  cursor: pointer;
 }

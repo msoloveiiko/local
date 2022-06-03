@@ -31,7 +31,7 @@ class DeleteCheckbox extends FormBase {
     $form["title"] = [
       "#type" => "html_tag",
       "#tag" => "h2",
-      "#value" => $this->t("Do you want delete this cat?"),
+      "#value" => $this->t("Do you want delete these cats?"),
       "#attributes" => [
         "class" => [
           "form-checkbox-title",
