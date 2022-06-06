@@ -1,6 +1,36 @@
-@import "variables.scss";
+@import "_variables.scss";
 .edit-form {
   position: relative;
+  .form-submit-edit {
+    border: 1px solid $blue;
+    border-radius: 2px;
+    background-color: $blue;
+    font-weight: 500;
+    color: aliceblue;
+    padding: 6px 13px;
+    font-size: 15px;
+    margin: 0 8px;
+    background-image: none;
+    &:hover{
+      transition: all ease-in-out 0.3s;
+      background-color: black;
+    }
+  }
+  .form-cancel-edit {
+    border: 1px solid $blue;
+    border-radius: 2px;
+    background-color: $blue;
+    font-weight: 500;
+    color: aliceblue;
+    padding: 6px 13px;
+    font-size: 15px;
+    margin: 0 8px;
+    background-image: none;
+    &:hover{
+      transition: all ease-in-out 0.3s;
+      background-color: black;
+    }
+  }
 }
 .cat-form-edit {
   visibility: hidden;
@@ -47,21 +77,33 @@
     background-color: black;
   }
 }
-.form-item-edit-name input {
-  height: 18px;
-  width: 200px;
-  padding: 5px 12px;
-  border: 1px solid black;
-  margin-left: 10px;
-  font-size: 13px;
+.form-item-edit-name {
+  display: flex;
+  input {
+    height: 25px;
+    width: 200px;
+    padding: 5px 12px;
+    border: 1px solid black;
+    margin-left: 10px;
+    font-size: 13px;
+  }
+  label {
+    margin: auto 0;
+  }
 }
-.form-item-edit-email input {
-  height: 18px;
-  width: 200px;
-  padding: 5px 12px;
-  border: 1px solid black;
-  margin-left: 10px;
-  font-size: 13px;
+.form-item-edit-email {
+  display: flex;
+  input {
+    height: 25px;
+    width: 200px;
+    padding: 5px 12px;
+    border: 1px solid black;
+    margin-left: 10px;
+    font-size: 13px;
+  }
+  label {
+    margin: auto 0;
+  }
 }
 .form-item-edit-image {
   position: relative;
@@ -78,5 +120,8 @@
   input {
     margin-left: 10px;
     width: 260px;
+  }
+  label {
+    margin: auto 0;
   }
 }
